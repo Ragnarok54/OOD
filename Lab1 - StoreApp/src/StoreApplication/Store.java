@@ -11,7 +11,7 @@ public class Store {
 		int index = this.getIndex(name);
 
 		if (index != -1 && stock.get(index).getPrice() == price) {
-			stock.get(index).updateStock(-amount);  				// removes a negative value, means it adds stock to existing product
+			stock.get(index).updateStock(-amount); // removes a negative value, means it adds stock to existing product
 		} else {
 			Stock product = new Stock(name, price, amount);
 			stock.add(product);
@@ -22,7 +22,7 @@ public class Store {
 		int index = 0;
 
 		for (Stock product : stock) {
-			if (product.getProductName() == name) {
+			if (name.equals(product.getProductName())) {
 				return index;
 			}
 			++index;
@@ -40,14 +40,28 @@ public class Store {
 
 	void sell(String name, int quantity) {
 		int index = this.getIndex(name);
-
-		if (stock.get(index).available(quantity)) {
-			stock.get(index).updateStock(quantity);
-			profit += stock.get(index).getPrice() * quantity;
+		if (index != -1) {
+			if (stock.get(index).available(quantity)) {
+				stock.get(index).updateStock(quantity);
+				profit += stock.get(index).getPrice() * quantity;
+			}
+			if (stock.get(index).amount() == 0)
+				stock.remove(index);
+		} else {
+			System.out.println("No such item exists in stock");
 		}
 	}
-	
+
 	int getProfit() {
 		return profit;
+	}
+
+	void showStock() {
+		System.out.println("*****Stock*****");
+		for (Stock product : stock) {
+			System.out.println(product.getProductName() + " with price: " + product.getPrice() + " and quantity: "
+					+ product.getAmount());
+		}
+		System.out.println("*****Stock*****");
 	}
 }

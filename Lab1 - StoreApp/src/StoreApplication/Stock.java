@@ -18,15 +18,21 @@ public class Stock {
 	int amount() {
 		return amount;
 	}
-	
+
 	int getPrice() {
 		return product.getPrice();
 	}
+
 	String getProductName() {
 		return product.getProductName();
 	}
+
 	void updateStock(int quantity) {
 		if (available(quantity))
 			amount = amount - quantity;
+	}
+
+	int getAmount() {
+		return amount;
 	}
 }
