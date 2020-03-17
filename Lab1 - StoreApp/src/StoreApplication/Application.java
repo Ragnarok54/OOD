@@ -1,16 +1,18 @@
 package StoreApplication;
 
 import java.util.Scanner;
+import java.util.Vector;
 
 public class Application {
 
 	public static void main(String[] args) {
-		
 		Store store = new Store();
 		
-		store.addProduct("RTX 2070", 2670, 5);
-		store.addProduct("RTX 2080 Super", 3899, 4);
-		store.addProduct("RTX 2080Ti", 6600, 2);
+		Employee employee1 = new Employee(store, "nume",true ,true);
+
+		employee1.addProduct("RTX 2070", 2670, 5);
+		employee1.addProduct("RTX 2080 Super", 3899, 4);
+		employee1.addProduct("RTX 2080Ti", 6600, 2);
 
 		
 		System.out.println("Do you want to buy something? Here is what we have:");
