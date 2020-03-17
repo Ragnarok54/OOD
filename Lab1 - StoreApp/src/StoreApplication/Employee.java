@@ -37,7 +37,14 @@ public class Employee {
 
 		}
 	}
-	
+	public void removeProduct(String name) {
+		if (this.canManage()) {
+			store.removeProduct(name);
+		} else {
+			System.out.println("Insufficient permisions");
+
+		}
+	}
 	public void showStock() {
 		store.showStock();
 	}

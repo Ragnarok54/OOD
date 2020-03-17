@@ -1,7 +1,6 @@
 package StoreApplication;
 
 import java.util.Scanner;
-import java.util.Vector;
 
 public class Application {
 
@@ -16,15 +15,14 @@ public class Application {
 
 		
 		System.out.println("Do you want to buy something? Here is what we have:");
-		store.showStock();
+		employee1.showStock();
 		
 		Scanner in = new Scanner(System.in);
 		String item = in.nextLine();
 		
 		// TODO: improve the menu;
-		store.sell(item, 1);
-		store.showStock();
-		
+		employee1.sellProduct(item, 1);
+		employee1.showStock();
 		
 		
 		in.close();

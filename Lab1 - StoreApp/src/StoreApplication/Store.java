@@ -34,7 +34,7 @@ public class Store {
 		return -1;
 	}
 
-	public void removeProduct(String name) {
+	protected void removeProduct(String name) {
 		int index = this.getIndex(name);
 
 		if (index != -1) {
@@ -42,7 +42,7 @@ public class Store {
 		}
 	}
 
-	void sell(String name, int quantity) {
+	protected void sell(String name, int quantity) {
 		int index = this.getIndex(name);
 
 		if (index != -1) {
@@ -61,7 +61,7 @@ public class Store {
 		return totalSales;
 	}
 
-	package void showStock() {
+	protected void showStock() {
 		System.out.println("*****Stock*****");
 		for (Stock product : stock) {
 			System.out.println(product.getProductName() + " with price: " + product.getPrice() + " and quantity: "
