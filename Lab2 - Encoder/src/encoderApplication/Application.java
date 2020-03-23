@@ -1,16 +1,23 @@
 package encoderApplication;
 
+import java.util.Random;
+
 public class Application {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		int lowerBound = 0;
+		int upperBound = 255;
+
+		Random rand = new Random();
 		
-		Encoder encoder = new Encoder(0,255,1000);
+		int key = rand.nextInt(1000);
+		
+		Encoder encoder = new Encoder(lowerBound, upperBound, key);
 		Decoder decoder = new Decoder(encoder);
-		
-		System.out.println(encoder.getEncodedText());
-		
-		System.out.println(decoder.getText());
+
+		System.out.println("The original text is  " + encoder.getText());
+		System.out.println("The coded text is     " + encoder.getEncodedText());
+		System.out.println("The decoded text is   " + decoder.getText());
 
 	}
 
