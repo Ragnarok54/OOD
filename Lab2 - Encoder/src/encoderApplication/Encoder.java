@@ -7,10 +7,10 @@ import java.util.Scanner;
 
 public class Encoder {
 	private String text; 					// Store the input string
-	protected String encodedText = ""; 		// Store the encoded string
-	protected int key; 						// Key used for encoding the string
-	protected int lowerBound; 				// Lower bound of the alphabet used for encoding
-	protected int upperBound; 				// Upper bound of the alphabet used for encoding
+	private String encodedText = ""; 		// Store the encoded string
+	private int key; 						// Key used for encoding the string
+	private int lowerBound; 				// Lower bound of the alphabet used for encoding
+	private int upperBound; 				// Upper bound of the alphabet used for encoding
 
 	// Constructor, it also outputs to file the result
 	Encoder(int lowerBound, int upperBound, int key) {
@@ -64,18 +64,25 @@ public class Encoder {
 	 * string to the "encoded.bin" file
 	 */
 	private void output() {
+		FileWriter output = null;
 		try {
 			File file = new File("encoded.bin");
 			file.createNewFile();
 
-			FileWriter output = new FileWriter("encoded.bin");
+			output = new FileWriter("encoded.bin");
 			output.write(encodedText);
 
-			output.close();
 		} catch (IOException e) {
 
-			System.out.println("An error occurred.");
+			System.out.println("An error occurred while creating file.");
 			e.printStackTrace();
+		}finally {
+			try {
+				output.close();
+			}catch (IOException e) {
+				System.out.println("An error occurred while closing file.");
+				e.printStackTrace();
+			}
 		}
 	}
 	

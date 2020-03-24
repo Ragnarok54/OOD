@@ -13,7 +13,7 @@ public class Application {
 		int key = rand.nextInt(1000);
 		
 		Encoder encoder = new Encoder(lowerBound, upperBound, key);
-		Decoder decoder = new Decoder(encoder);
+		Decoder decoder = new Decoder(lowerBound, upperBound, key, encoder.getEncodedText());
 
 		System.out.println("The original text is  " + encoder.getText());
 		System.out.println("The coded text is     " + encoder.getEncodedText());
