@@ -7,19 +7,7 @@ public class Decoder {
 	private int lowerBound; 				// Lower bound of the alphabet used for encoding
 	private int upperBound; 				// Upper bound of the alphabet used for encoding
 
-//	// Constructor based on an encoder
-//	Decoder(Encoder encoder) {
-//		// Set the variables from the encoded string
-//		this.lowerBound = encoder.lowerBound;
-//		this.upperBound = encoder.upperBound;
-//		this.key = encoder.key;
-//		this.encodedText = encoder.encodedText;
-//
-//		// Encode the string
-//		this.decode();
-//	}
-	
-	// Constructor by input
+	// Constructor
 	Decoder(int lowerBound, int upperBound, int key, String encodedText) {
 		// Set the variables
 		this.lowerBound = lowerBound;
@@ -27,7 +15,7 @@ public class Decoder {
 		this.key = key;
 		this.encodedText = encodedText;
 
-		// Encode the string
+		// Decode the string
 		this.decode();
 		}
 
