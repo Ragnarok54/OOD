@@ -10,8 +10,7 @@ import shape.IShape;
 import square.Square;
 
 public class Main {
-	static int x1, x2, y1, y2, radius;
-	static Point p1, p2;
+
 	static CompositeShape board = new CompositeShape(); // list to save all the shapes on the board
 
 	public static void main(String[] args) {
@@ -35,52 +34,63 @@ public class Main {
 
 		// Add circle to board
 		addMenuItems.add(new MenuItem("Circle", 1, (parameters) -> {
-			readCircle();
-			createCircle(x1, y1, radius);
+			IShape x = new Circle();
+			x.read();
+			board.add(x);
+			//createCircle(x1, y1, radius);
 		}));
 		// Add square to board
 		addMenuItems.add(new MenuItem("Square", 2, (parameters) -> {
-			readSquare();
-			createSquare(x1, y1, x2, y2);
+			IShape shape = new Square();
+			shape.read();
+			board.add(shape);
+			//createSquare(x1, y1, x2, y2);
 		}));
 
 		// Delete circle from board
 		deleteMenuItems.add(new MenuItem("Circle", 1, (parameters) -> {
 			System.out.println(" ==== Shape to delete ====");
-			readCircle();
-			removeShape(new Circle(x1, y1, radius));
+			IShape shape = new Circle();
+			shape.read();
+			removeShape(shape);
 		}));
 		// Delete square from board
 		deleteMenuItems.add(new MenuItem("Square", 2, (parameters) -> {
 			System.out.println(" ==== Shape to delete ====");
-			readSquare();
-			removeShape(new Square(x1, y1, x2, y2));
+			IShape shape = new Square();
+			shape.read();
+			removeShape(shape);
 		}));
 
 		// Modify existing circle
 		modifyMenuItems.add(new MenuItem("Circle", 1, (parameters) -> {
 			// Search for the shape
 			System.out.println(" ==== Shape to modify ====");
-			readCircle();
-			int index = removeShape(new Circle(x1, y1, radius));
+			IShape shape = new Circle();
+			shape.read();
+			int index = removeShape(shape);
 			if (index >= 0) {
 				// Get the modified values
 				System.out.println(" ==== New values for circle ====");
-				readCircle();
-				board.addAtPos(new Circle(x1, y1, radius), index);
+				shape.read();
+				board.addAtPos(shape, index);
+			}else {
+				System.out.println("Unable to find shape");
 			}
 		}));
 		// Modify existing square
 		modifyMenuItems.add(new MenuItem("Square", 2, (parameters) -> {
 			// Search for the shape
 			System.out.println(" ==== Shape to modify ====");
-			readSquare();
-			int index = removeShape(new Square(x1, y1, x2, y2));
+			IShape shape = new Square();
+			shape.read();
+			int index = removeShape(shape);
 			if (index >= 0) {
 				// Get the modified values
 				System.out.println(" ==== New values for square ====");
-				readSquare();
-				board.addAtPos(new Square(x1, y1, x2, y2), index);
+				board.addAtPos(shape, index);
+			}else {
+				System.out.println("Unable to find shape");
 			}
 		}));
 
@@ -95,48 +105,6 @@ public class Main {
 		return new Menu("Main Menu", 0, mainMenuItems);
 	}
 
-	// Read point into already existing variables based on option
-	private static void readPoint(int option) {
-		System.out.println("Input coordinates: ");
-		Scanner consoleIn = new Scanner(System.in);
-		if (option == 1) {
-			x1 = consoleIn.nextInt();
-			y1 = consoleIn.nextInt();
-			p1 = new Point(x1, y1);
-		} else {
-			x2 = consoleIn.nextInt();
-			y2 = consoleIn.nextInt();
-			p2 = new Point(x2, y2);
-		}
-	}
-
-	// Read radius into existing variable
-	private static void readRadius() {
-		System.out.println("Input radius: ");
-		Scanner consoleIn = new Scanner(System.in);
-		radius = consoleIn.nextInt();
-	}
-
-	private static void readSquare() {
-		readPoint(1);
-		readPoint(2);
-	}
-
-	private static void readCircle() {
-		readPoint(1);
-		readRadius();
-	}
-
-	// Pushback circle to the board
-	private static void createCircle(int x, int y, int radius) {
-		IShape z = new Circle(x, y, radius);
-		board.add(z);
-	}
-
-	// Pushback square to the board
-	private static void createSquare(int x1, int y1, int x2, int y2) {
-		board.add(new Square(x1, y1, x2, y2));
-	}
 
 	private static int removeShape(IShape shape) {
 		int it = -1;

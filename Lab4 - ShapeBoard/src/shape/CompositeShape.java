@@ -5,6 +5,8 @@ import java.util.ArrayList;
 public class CompositeShape implements IShape {
 	private final ArrayList<IShape> shapeList = new ArrayList<IShape>();
 
+	public void read() {
+	}
 	public void add(IShape shape) {
 		shapeList.add(shape);
 	}

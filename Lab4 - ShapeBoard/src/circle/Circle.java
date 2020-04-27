@@ -1,29 +1,30 @@
 package circle;
 
-import java.awt.Point;
+import java.util.Scanner;
 
+import point.Point;
 import shape.IShape;
 
 public class Circle implements IShape {
-	Point origin; // int x, y;
-	int radius;
+	
+	private int radius;
+	private Point origin = new Point();
+	
 
-	public Circle(Point origin, int radius) {
-		this.origin = origin;
-		this.radius = radius;
-	}
 
-	public Circle(int x, int y, int radius) {
-		this.origin = new Point(x, y); //this.x x = x;S this.y = y;
-		this.radius = radius;
+	public void read() {
+		((Point) origin).read();
+		System.out.println("Input radius: ");
+		Scanner consoleIn = new Scanner(System.in);
+		radius = consoleIn.nextInt();
 	}
 
 	public int getX() {
-		return (int) origin.getX(); //return x;
+		return (int) origin.getX();
 	}
 
 	public int getY() {
-		return (int) origin.getY(); //return y;
+		return (int) origin.getY();
 	}
 
 	public int getRadius() {
@@ -43,14 +44,4 @@ public class Circle implements IShape {
 	public String getShapeName() {
 		return "Circle";
 	}
-	
-//	@Override
-//	public void draw() {
-//		System.out.println("Circle: P(" + x + ", " + y + ") R = " + radius);
-//	}
-//
-//	@Override
-//	public String get() {
-//		return "Circle: P(" + x + ", " + y + ") R = " + radius;
-//	}
 }
