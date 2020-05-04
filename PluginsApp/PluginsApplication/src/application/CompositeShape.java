@@ -1,6 +1,8 @@
-package interfaces;
+package application;
 
 import java.util.ArrayList;
+
+import interfaces.IShape;
 
 public class CompositeShape implements IShape {
 	private final ArrayList<IShape> shapeList = new ArrayList<IShape>();

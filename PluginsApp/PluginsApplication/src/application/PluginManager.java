@@ -23,17 +23,18 @@ public class PluginManager {
 		IPluginsAppPlugin retPlugin = null;
 		try {
 			var currentLoader = this.getClass().getClassLoader();
-			System.out.println("Looking for plugins in: " + jarFile.getAbsolutePath());
-			System.out.println("current path" + Paths.get("").toAbsolutePath().toString());
+			//System.out.println("Looking for plugins in: " + jarFile.getAbsolutePath());
+			//System.out.println("current path" + Paths.get("").toAbsolutePath().toString());
 			URI jarURI = jarFile.toURI();
 			ClassLoader loader = URLClassLoader.newInstance(new URL[] { jarURI.toURL() }, currentLoader);
 			List<String> classesInJar = getJARClasses(jarFile.getAbsolutePath());
 			for (String currentClassName : classesInJar) {
-				System.out.println("Checking class: " + currentClassName);
+				//System.out.println("Checking class: " + currentClassName);
 				Class currentClass = Class.forName(currentClassName, true, loader);
 				// if the class implements our plugin interface
 				if (!currentClass.isInterface() && IPluginsAppPlugin.class.isAssignableFrom(currentClass)) {
-					System.out.println("Seems like class " + currentClassName + " is a plugin");
+					//System.out.println("Seems like class " + currentClassName + " is a plugin");
+					System.out.println(currentClassName + " is a plugin");
 					// we create an instance for the plugin
 					retPlugin = (IPluginsAppPlugin) currentClass.getConstructor().newInstance();
 					break;

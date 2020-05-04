@@ -3,7 +3,6 @@ package application;
 
 import java.util.ArrayList;
 
-import interfaces.CompositeShape;
 import interfaces.IShape;
 
 public class ApplicationMenu {
